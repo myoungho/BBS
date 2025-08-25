@@ -1,0 +1,12 @@
+@model BbsSetting
+@{
+    ViewData["Title"] = "Setting Details";
+}
+
+<h1>Setting Details</h1>
+<dl class="row">
+    <dt class="col-sm-3">Allowed File Extensions</dt>
+    <dd class="col-sm-9">@Model.AllowedFileExtensions</dd>
+</dl>
+<a class="btn btn-warning" asp-action="Edit" asp-route-id="@Model.Id">Edit</a>
+<a class="btn btn-secondary" asp-action="Index">Back to List</a>
