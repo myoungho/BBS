@@ -77,8 +77,7 @@ public class PostService : IPostService
     {
         var post = await _posts.GetByIdAsync(postId);
         if (post == null) throw new InvalidOperationException("Post not found");
-        var comments = await _comments.GetAllAsync();
-        return comments.Where(c => c.PostId == postId);
+        return await _comments.FindAsync(c => c.PostId == postId);
     }
 
     public async Task<Attachment> AddAttachmentAsync(int postId, Attachment attachment)
@@ -111,7 +110,6 @@ public class PostService : IPostService
     {
         var post = await _posts.GetByIdAsync(postId);
         if (post == null) throw new InvalidOperationException("Post not found");
-        var attachments = await _attachments.GetAllAsync();
-        return attachments.Where(a => a.PostId == postId);
+        return await _attachments.FindAsync(a => a.PostId == postId);
     }
 }

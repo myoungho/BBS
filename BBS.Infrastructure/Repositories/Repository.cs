@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using System.Linq.Expressions;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
@@ -19,6 +21,11 @@ public class Repository<T> : IRepository<T> where T : class
     public virtual async Task<List<T>> GetAllAsync()
     {
         return await _dbSet.ToListAsync();
+    }
+
+    public virtual async Task<IEnumerable<T>> FindAsync(Expression<Func<T, bool>> predicate)
+    {
+        return await _dbSet.Where(predicate).ToListAsync();
     }
 
     public virtual async Task<T?> GetByIdAsync(int id)
