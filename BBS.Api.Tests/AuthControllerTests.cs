@@ -1,5 +1,6 @@
 using BBS.Api.Controllers;
 using BBS.Application.Services;
+using BBS.Domain.Entities;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using BBS.Infrastructure.Repositories;
@@ -18,7 +19,7 @@ public class AuthControllerTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
         var context = new BbsContext(options);
-        IUserRepository repository = new UserRepository(context);
+        IRepository<User, string> repository = new Repository<User, string>(context);
         IUserService service = new UserService(repository);
         var settings = new Dictionary<string, string>
         {

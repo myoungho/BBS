@@ -1,3 +1,5 @@
+using System;
+using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using BBS.Domain.Entities;
@@ -7,17 +9,17 @@ namespace BBS.Application.Services;
 
 public class UserService : IUserService
 {
-    private readonly IUserRepository _repository;
+    private readonly IRepository<User, string> _repository;
 
-    public UserService(IUserRepository repository)
+    public UserService(IRepository<User, string> repository)
     {
         _repository = repository;
     }
 
     public async Task<bool> RegisterAsync(string email, string password, string nickname)
     {
-        if (await _repository.GetByEmailAsync(email) != null) return false;
-        if (await _repository.GetByNicknameAsync(nickname) != null) return false;
+        if (await _repository.GetByIdAsync(email) != null) return false;
+        if ((await _repository.GetAllAsync()).Any(u => u.Nickname == nickname)) return false;
 
         var user = new User
         {
@@ -31,7 +33,7 @@ public class UserService : IUserService
 
     public async Task<User?> AuthenticateAsync(string email, string password)
     {
-        var user = await _repository.GetByEmailAsync(email);
+        var user = await _repository.GetByIdAsync(email);
         if (user == null) return null;
         return user.PasswordHash == Hash(password) ? user : null;
     }

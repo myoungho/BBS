@@ -20,8 +20,9 @@ public class PostsControllerTests
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
         var context = new BbsContext(options);
-        IPostRepository repository = new PostRepository(context);
-        IPostService service = new PostService(repository);
+        IRepository<Post, int> postRepository = new Repository<Post, int>(context);
+        IRepository<Comment, int> commentRepository = new Repository<Comment, int>(context);
+        IPostService service = new PostService(postRepository, commentRepository);
         var controller = new PostsController(service)
         {
             ControllerContext = new ControllerContext
