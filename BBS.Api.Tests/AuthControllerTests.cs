@@ -73,5 +73,41 @@ public class AuthControllerTests
             Assert.Contains("Reader", user!.UserRoles.Select(ur => ur.Role.Name));
         }
     }
+
+    [Fact]
+    public async Task Register_ReturnsOk_WhenSuccessful()
+    {
+        var (context, controller) = CreateController();
+        using (context)
+        {
+            var result = await controller.Register(new RegisterDto("new@example.com", "pass", "newnick"));
+            Assert.IsType<OkResult>(result);
+        }
+    }
+
+    [Fact]
+    public async Task Login_ReturnsUnauthorized_WhenCredentialsInvalid()
+    {
+        var (context, controller) = CreateController();
+        using (context)
+        {
+            var result = await controller.Login(new LoginDto("nope@example.com", "wrong"));
+            Assert.IsType<UnauthorizedResult>(result);
+        }
+    }
+
+    [Fact]
+    public async Task Login_ReturnsOk_WithToken_WhenCredentialsValid()
+    {
+        var (context, controller) = CreateController();
+        using (context)
+        {
+            await controller.Register(new RegisterDto("test@example.com", "pass", "nick"));
+            var result = await controller.Login(new LoginDto("test@example.com", "pass"));
+            var okResult = Assert.IsType<OkObjectResult>(result);
+            var token = okResult.Value!.GetType().GetProperty("token")?.GetValue(okResult.Value) as string;
+            Assert.False(string.IsNullOrEmpty(token));
+        }
+    }
 }
 
