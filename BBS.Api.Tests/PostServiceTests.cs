@@ -15,8 +15,8 @@ public class PostServiceTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
         var context = new BbsContext(options);
-        var postRepo = new Repository<Post, int>(context);
-        var commentRepo = new Repository<Comment, int>(context);
+        var postRepo = new Repository<Post>(context);
+        var commentRepo = new Repository<Comment>(context);
         return new PostService(postRepo, commentRepo);
     }
 

@@ -18,7 +18,7 @@ public class UsersControllerTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
         var context = new BbsContext(options);
-        IRepository<User, string> repository = new Repository<User, string>(context);
+        IRepository<User> repository = new Repository<User>(context);
         IUserService service = new UserService(repository);
         var controller = new UsersController(service);
         return (context, controller);
