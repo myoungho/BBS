@@ -1,4 +1,5 @@
 @model BBS.Domain.Entities.User
+@using System.Linq
 @{
     ViewData["Title"] = "Member Details";
 }
@@ -9,6 +10,6 @@
     <dt class="col-sm-2">Nickname</dt>
     <dd class="col-sm-10">@Model.Nickname</dd>
     <dt class="col-sm-2">Roles</dt>
-    <dd class="col-sm-10">@string.Join(", ", Model.Roles)</dd>
+    <dd class="col-sm-10">@string.Join(", ", Model.UserRoles.Select(ur => ur.Role.Name))</dd>
 </dl>
 <a class="btn btn-secondary" asp-action="Index">Back to List</a>

@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using BBS.Api.Controllers;
 using BBS.Application.Services;
 using BBS.Domain.Entities;
-using BBS.Domain.Enums;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using BBS.Infrastructure.Repositories;
@@ -20,8 +21,9 @@ public class AuthControllerTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
         var context = new BbsContext(options);
-        IRepository<User> repository = new Repository<User>(context);
-        IUserService service = new UserService(repository);
+        IRepository<User> userRepository = new Repository<User>(context);
+        IRepository<Role> roleRepository = new Repository<Role>(context);
+        IUserService service = new UserService(userRepository, roleRepository);
         var settings = new Dictionary<string, string>
         {
             { "Jwt:Key", "k" },
@@ -68,7 +70,7 @@ public class AuthControllerTests
             await controller.Register(new RegisterDto("test@example.com", "pass", "nick"));
             var user = await context.Users.FirstOrDefaultAsync(u => u.LoginId == "test@example.com");
             Assert.NotNull(user);
-            Assert.Contains(Role.Reader, user!.Roles);
+            Assert.Contains("Reader", user!.UserRoles.Select(ur => ur.Role.Name));
         }
     }
 }
