@@ -1,4 +1,4 @@
-namespace Bbs.Core.Models;
+namespace BBS.Core.Models;
 
 public class Post
 {
