@@ -1,4 +1,4 @@
-namespace Bbs.Api.Models;
+namespace Bbs.Core.Models;
 
 public class Comment
 {
