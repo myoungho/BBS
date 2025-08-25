@@ -12,6 +12,7 @@ public class BbsContext : DbContext
     public DbSet<User> Users => Set<User>();
     public DbSet<Role> Roles => Set<Role>();
     public DbSet<UserRole> UserRoles => Set<UserRole>();
+    public DbSet<Attachment> Attachments => Set<Attachment>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -21,6 +22,10 @@ public class BbsContext : DbContext
             .HasOne<User>()
             .WithMany()
             .HasForeignKey(p => p.AuthorId);
+        modelBuilder.Entity<Attachment>()
+            .HasOne(a => a.Post)
+            .WithMany(p => p.Attachments)
+            .HasForeignKey(a => a.PostId);
 
         modelBuilder.Entity<UserRole>()
             .HasKey(ur => new { ur.UserId, ur.RoleId });

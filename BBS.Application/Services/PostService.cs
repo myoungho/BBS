@@ -10,11 +10,13 @@ public class PostService : IPostService
 {
     private readonly IRepository<Post> _posts;
     private readonly IRepository<Comment> _comments;
+    private readonly IRepository<Attachment> _attachments;
 
-    public PostService(IRepository<Post> posts, IRepository<Comment> comments)
+    public PostService(IRepository<Post> posts, IRepository<Comment> comments, IRepository<Attachment> attachments)
     {
         _posts = posts;
         _comments = comments;
+        _attachments = attachments;
     }
 
     public async Task<IEnumerable<Post>> GetPostsAsync() => await _posts.GetAllAsync();
@@ -70,5 +72,24 @@ public class PostService : IPostService
         if (post == null) throw new InvalidOperationException("Post not found");
         var comments = await _comments.GetAllAsync();
         return comments.Where(c => c.PostId == postId);
+    }
+
+    public async Task<Attachment> AddAttachmentAsync(int postId, Attachment attachment)
+    {
+        if (string.IsNullOrWhiteSpace(attachment.FileName))
+            throw new ArgumentException("File name is required", nameof(attachment));
+
+        var post = await _posts.GetByIdAsync(postId);
+        if (post == null) throw new InvalidOperationException("Post not found");
+        attachment.PostId = postId;
+        return await _attachments.AddAsync(attachment);
+    }
+
+    public async Task<IEnumerable<Attachment>> GetAttachmentsAsync(int postId)
+    {
+        var post = await _posts.GetByIdAsync(postId);
+        if (post == null) throw new InvalidOperationException("Post not found");
+        var attachments = await _attachments.GetAllAsync();
+        return attachments.Where(a => a.PostId == postId);
     }
 }

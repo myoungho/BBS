@@ -13,4 +13,6 @@ public interface IPostService
     Task DeletePostAsync(int id, int userId);
     Task<Comment> AddCommentAsync(int postId, Comment comment);
     Task<IEnumerable<Comment>> GetCommentsAsync(int postId);
+    Task<Attachment> AddAttachmentAsync(int postId, Attachment attachment);
+    Task<IEnumerable<Attachment>> GetAttachmentsAsync(int postId);
 }

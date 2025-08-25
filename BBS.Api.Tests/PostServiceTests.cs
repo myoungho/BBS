@@ -3,6 +3,7 @@ using BBS.Domain.Entities;
 using BBS.Infrastructure.Data;
 using BBS.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using Xunit;
 
 namespace BBS.Api.Tests;
@@ -17,7 +18,8 @@ public class PostServiceTests
         var context = new BbsContext(options);
         var postRepo = new Repository<Post>(context);
         var commentRepo = new Repository<Comment>(context);
-        return new PostService(postRepo, commentRepo);
+        var attachmentRepo = new Repository<Attachment>(context);
+        return new PostService(postRepo, commentRepo, attachmentRepo);
     }
 
     [Fact]
@@ -28,5 +30,17 @@ public class PostServiceTests
 
         await Assert.ThrowsAsync<ArgumentException>(
             () => service.CreatePostAsync(post, 1));
+    }
+
+    [Fact]
+    public async Task AddAttachmentAsync_AddsAttachments()
+    {
+        var service = CreateService();
+        var post = await service.CreatePostAsync(new Post { Title = "t", Content = "c" }, 1);
+        await service.AddAttachmentAsync(post.Id, new Attachment { FileName = "a1.txt" });
+        await service.AddAttachmentAsync(post.Id, new Attachment { FileName = "a2.txt" });
+
+        var attachments = await service.GetAttachmentsAsync(post.Id);
+        Assert.Equal(2, attachments.Count());
     }
 }

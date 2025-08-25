@@ -115,6 +115,39 @@ public class PostsController : ControllerBase
         }
     }
 
+    [HttpPost("{postId}/attachments")]
+    [Authorize]
+    public async Task<ActionResult<Attachment>> AddAttachment(int postId, Attachment attachment)
+    {
+        try
+        {
+            var created = await _service.AddAttachmentAsync(postId, attachment);
+            return CreatedAtAction(nameof(GetPost), new { id = postId }, created);
+        }
+        catch (InvalidOperationException)
+        {
+            return NotFound();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
+    }
+
+    [HttpGet("{postId}/attachments")]
+    public async Task<ActionResult<IEnumerable<Attachment>>> GetAttachments(int postId)
+    {
+        try
+        {
+            var attachments = await _service.GetAttachmentsAsync(postId);
+            return Ok(attachments);
+        }
+        catch (InvalidOperationException)
+        {
+            return NotFound();
+        }
+    }
+
     [HttpGet("{postId}/comments")]
     public async Task<ActionResult<IEnumerable<Comment>>> GetComments(int postId)
     {
