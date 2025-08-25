@@ -1,6 +1,7 @@
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Json;
-using BBS.Core.Models;
+using BBS.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BBS.Web.Controllers;

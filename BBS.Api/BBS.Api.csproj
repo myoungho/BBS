@@ -13,6 +13,8 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\\BBS.Core\\BBS.Core.csproj" />
+    <ProjectReference Include="..\\BBS.Domain\\BBS.Domain.csproj" />
+    <ProjectReference Include="..\\BBS.Application\\BBS.Application.csproj" />
+    <ProjectReference Include="..\\BBS.Infrastructure\\BBS.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

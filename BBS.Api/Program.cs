@@ -1,4 +1,7 @@
-using BBS.Core.Data;
+using BBS.Application.Services;
+using BBS.Domain.Repositories;
+using BBS.Infrastructure.Data;
+using BBS.Infrastructure.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -6,9 +9,11 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Configure EF Core with SQL Server
+// Configure EF Core and repositories
 builder.Services.AddDbContext<BbsContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+    options.UseInMemoryDatabase("Bbs"));
+builder.Services.AddScoped<IPostRepository, PostRepository>();
+builder.Services.AddScoped<IPostService, PostService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
