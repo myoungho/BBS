@@ -1,6 +1,6 @@
 using Bbs.Api.Controllers;
-using Bbs.Api.Data;
-using Bbs.Api.Models;
+using Bbs.Core.Data;
+using Bbs.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;

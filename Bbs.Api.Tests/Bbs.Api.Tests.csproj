@@ -16,4 +16,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Bbs.Api\Bbs.Api.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Bbs.Core\Bbs.Core.csproj" />
+  </ItemGroup>
 </Project>

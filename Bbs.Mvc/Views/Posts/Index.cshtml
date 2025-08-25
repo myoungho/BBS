@@ -1,0 +1,10 @@
+@model IEnumerable<Bbs.Core.Models.Post>
+
+@foreach (var post in Model)
+{
+    <article>
+        <h2>@post.Title</h2>
+        <p>@post.Content</p>
+        <p>@post.Comments.Count comment(s)</p>
+    </article>
+}

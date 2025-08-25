@@ -6,6 +6,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bbs.Api", "Bbs.Api\\Bbs.Api
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bbs.Api.Tests", "Bbs.Api.Tests\\Bbs.Api.Tests.csproj", "{700852AE-772F-497C-8E64-D0284FABA253}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bbs.Core", "Bbs.Core\\Bbs.Core.csproj", "{5AB0ED95-D165-4719-B8C5-66164C5F18BC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Bbs.Mvc", "Bbs.Mvc\\Bbs.Mvc.csproj", "{468FE439-6DDA-4796-B1AC-0C6A9FF96943}"
+EndProject
 Global
     GlobalSection(SolutionConfigurationPlatforms) = preSolution
         Debug|Any CPU = Debug|Any CPU
@@ -20,6 +24,14 @@ Global
         {700852AE-772F-497C-8E64-D0284FABA253}.Debug|Any CPU.Build.0 = Debug|Any CPU
         {700852AE-772F-497C-8E64-D0284FABA253}.Release|Any CPU.ActiveCfg = Release|Any CPU
         {700852AE-772F-497C-8E64-D0284FABA253}.Release|Any CPU.Build.0 = Release|Any CPU
+        {5AB0ED95-D165-4719-B8C5-66164C5F18BC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {5AB0ED95-D165-4719-B8C5-66164C5F18BC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {5AB0ED95-D165-4719-B8C5-66164C5F18BC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {5AB0ED95-D165-4719-B8C5-66164C5F18BC}.Release|Any CPU.Build.0 = Release|Any CPU
+        {468FE439-6DDA-4796-B1AC-0C6A9FF96943}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+        {468FE439-6DDA-4796-B1AC-0C6A9FF96943}.Debug|Any CPU.Build.0 = Debug|Any CPU
+        {468FE439-6DDA-4796-B1AC-0C6A9FF96943}.Release|Any CPU.ActiveCfg = Release|Any CPU
+        {468FE439-6DDA-4796-B1AC-0C6A9FF96943}.Release|Any CPU.Build.0 = Release|Any CPU
     EndGlobalSection
     GlobalSection(SolutionProperties) = preSolution
         HideSolutionNode = FALSE

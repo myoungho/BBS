@@ -1,7 +1,7 @@
-using Bbs.Api.Models;
+using Bbs.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bbs.Api.Data;
+namespace Bbs.Core.Data;
 
 public class BbsContext : DbContext
 {
