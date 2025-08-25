@@ -3,8 +3,24 @@
   "WorkspaceRootPath": "C:\\Users\\mingh\\Documents\\Project\\BBS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Infrastructure\\Migrations\\20250825145839_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:BBS.Infrastructure\\Migrations\\20250825145839_InitialCreate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|solutionrelative:bbs.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|solutionrelative:bbs.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.web\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|solutionrelative:bbs.web\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.web\\controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|solutionrelative:bbs.web\\controllers\\memberscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|solutionrelative:bbs.api\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -111,14 +127,66 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "20250825145839_InitialCreate.cs",
-              "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Infrastructure\\Migrations\\20250825145839_InitialCreate.cs",
-              "RelativeDocumentMoniker": "BBS.Infrastructure\\Migrations\\20250825145839_InitialCreate.cs",
-              "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Infrastructure\\Migrations\\20250825145839_InitialCreate.cs",
-              "RelativeToolTip": "BBS.Infrastructure\\Migrations\\20250825145839_InitialCreate.cs",
+              "Title": "AuthController.cs",
+              "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Api\\Controllers\\AuthController.cs",
+              "RelativeDocumentMoniker": "BBS.Api\\Controllers\\AuthController.cs",
+              "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Api\\Controllers\\AuthController.cs",
+              "RelativeToolTip": "BBS.Api\\Controllers\\AuthController.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAC0AAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T15:20:09.721Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "BBS.Web\\Controllers\\AccountController.cs",
+              "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "BBS.Web\\Controllers\\AccountController.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACQAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T15:15:58.717Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "MembersController.cs",
+              "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\MembersController.cs",
+              "RelativeDocumentMoniker": "BBS.Web\\Controllers\\MembersController.cs",
+              "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\MembersController.cs",
+              "RelativeToolTip": "BBS.Web\\Controllers\\MembersController.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-08-25T14:58:39.754Z",
+              "WhenOpened": "2025-08-25T15:15:56.194Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "PostsController.cs",
+              "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\PostsController.cs",
+              "RelativeDocumentMoniker": "BBS.Web\\Controllers\\PostsController.cs",
+              "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\PostsController.cs",
+              "RelativeToolTip": "BBS.Web\\Controllers\\PostsController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T15:15:43.005Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Api\\Program.cs",
+              "RelativeDocumentMoniker": "BBS.Api\\Program.cs",
+              "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Api\\Program.cs",
+              "RelativeToolTip": "BBS.Api\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC8AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-25T15:10:03.592Z",
               "EditorCaption": ""
             }
           ]
