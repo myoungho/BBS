@@ -46,8 +46,7 @@ public class PostService : IPostService
         if (string.IsNullOrWhiteSpace(post.Title) || string.IsNullOrWhiteSpace(post.Content))
             throw new ArgumentException("Title and content are required", nameof(post));
 
-        var existing = await _posts.GetByIdAsync(post.Id);
-        if (existing == null) throw new KeyNotFoundException("Post not found");
+        var existing = await GetPostOrThrowAsync(post.Id);
         if (existing.AuthorId != userId) throw new UnauthorizedAccessException("Cannot edit others' posts");
         existing.Title = post.Title;
         existing.Content = post.Content;
@@ -56,8 +55,7 @@ public class PostService : IPostService
 
     public async Task DeletePostAsync(int id, int userId)
     {
-        var existing = await _posts.GetByIdAsync(id);
-        if (existing == null) throw new KeyNotFoundException("Post not found");
+        var existing = await GetPostOrThrowAsync(id);
         if (existing.AuthorId != userId) throw new UnauthorizedAccessException("Cannot delete others' posts");
         await _posts.DeleteAsync(id);
     }
@@ -67,16 +65,14 @@ public class PostService : IPostService
         if (string.IsNullOrWhiteSpace(comment.Content))
             throw new ArgumentException("Content is required", nameof(comment));
 
-        var post = await _posts.GetByIdAsync(postId);
-        if (post == null) throw new InvalidOperationException("Post not found");
+        await GetPostOrThrowAsync(postId);
         comment.PostId = postId;
         return await _comments.AddAsync(comment);
     }
 
     public async Task<IEnumerable<Comment>> GetCommentsAsync(int postId)
     {
-        var post = await _posts.GetByIdAsync(postId);
-        if (post == null) throw new InvalidOperationException("Post not found");
+        await GetPostOrThrowAsync(postId);
         return await _comments.FindAsync(c => c.PostId == postId);
     }
 
@@ -87,8 +83,7 @@ public class PostService : IPostService
         if (string.IsNullOrWhiteSpace(attachment.FileUrl))
             throw new ArgumentException("File URL is required", nameof(attachment));
 
-        var post = await _posts.GetByIdAsync(postId);
-        if (post == null) throw new InvalidOperationException("Post not found");
+        await GetPostOrThrowAsync(postId);
 
         var settings = (await _settings.GetAllAsync()).FirstOrDefault();
         if (settings != null && !string.IsNullOrWhiteSpace(settings.AllowedFileExtensions))
@@ -108,8 +103,13 @@ public class PostService : IPostService
 
     public async Task<IEnumerable<Attachment>> GetAttachmentsAsync(int postId)
     {
-        var post = await _posts.GetByIdAsync(postId);
-        if (post == null) throw new InvalidOperationException("Post not found");
+        await GetPostOrThrowAsync(postId);
         return await _attachments.FindAsync(a => a.PostId == postId);
+    }
+
+    private async Task<Post> GetPostOrThrowAsync(int id)
+    {
+        var post = await _posts.GetByIdAsync(id);
+        return post ?? throw new InvalidOperationException("Post not found");
     }
 }
