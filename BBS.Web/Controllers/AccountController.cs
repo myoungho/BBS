@@ -47,9 +47,10 @@ public class AccountController : Controller
             return View(dto);
         }
         HttpContext.Session.SetString("token", result.token);
-        var email = GetEmailFromToken(result.token);
-        if (email != null)
-            HttpContext.Session.SetString("user", email);
+        var userId = GetUserIdFromToken(result.token);
+        if (userId != null)
+            HttpContext.Session.SetString("userId", userId);
+        HttpContext.Session.SetString("user", dto.Email);
         return RedirectToAction("Index", "Posts");
     }
 
@@ -57,10 +58,11 @@ public class AccountController : Controller
     {
         HttpContext.Session.Remove("token");
         HttpContext.Session.Remove("user");
+        HttpContext.Session.Remove("userId");
         return RedirectToAction("Index", "Posts");
     }
 
-    private static string? GetEmailFromToken(string token)
+    private static string? GetUserIdFromToken(string token)
     {
         var parts = token.Split('.');
         if (parts.Length < 2) return null;

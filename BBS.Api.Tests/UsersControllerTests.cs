@@ -31,8 +31,8 @@ public class UsersControllerTests
         var (context, controller) = CreateController();
         using (context)
         {
-            context.Users.Add(new User { Id = "a@example.com", Nickname = "a", PasswordHash = "p" });
-            context.Users.Add(new User { Id = "b@example.com", Nickname = "b", PasswordHash = "p" });
+            context.Users.Add(new User { LoginId = "a@example.com", Nickname = "a", PasswordHash = "p" });
+            context.Users.Add(new User { LoginId = "b@example.com", Nickname = "b", PasswordHash = "p" });
             await context.SaveChangesAsync();
 
             var result = await controller.GetUsers();
@@ -48,13 +48,13 @@ public class UsersControllerTests
         var (context, controller) = CreateController();
         using (context)
         {
-            context.Users.Add(new User { Id = "a@example.com", Nickname = "a", PasswordHash = "p" });
+            context.Users.Add(new User { LoginId = "a@example.com", Nickname = "a", PasswordHash = "p" });
             await context.SaveChangesAsync();
 
             var result = await controller.GetUser("a@example.com");
             var ok = Assert.IsType<OkObjectResult>(result.Result);
             var user = Assert.IsType<User>(ok.Value);
-            Assert.Equal("a@example.com", user.Id);
+            Assert.Equal("a@example.com", user.LoginId);
             Assert.Contains(Role.Reader, user.Roles);
         }
     }

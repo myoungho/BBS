@@ -66,7 +66,7 @@ public class AuthControllerTests
         using (context)
         {
             await controller.Register(new RegisterDto("test@example.com", "pass", "nick"));
-            var user = await context.Users.FindAsync("test@example.com");
+            var user = await context.Users.FirstOrDefaultAsync(u => u.LoginId == "test@example.com");
             Assert.NotNull(user);
             Assert.Contains(Role.Reader, user!.Roles);
         }

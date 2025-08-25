@@ -21,7 +21,7 @@ public class PostService : IPostService
 
     public Task<Post?> GetPostAsync(int id) => _posts.GetByIdAsync(id);
 
-    public Task<Post> CreatePostAsync(Post post, string authorId)
+    public Task<Post> CreatePostAsync(Post post, int authorId)
     {
         if (string.IsNullOrWhiteSpace(post.Title))
             throw new ArgumentException("Title is required", nameof(post));
@@ -32,7 +32,7 @@ public class PostService : IPostService
         return _posts.AddAsync(post);
     }
 
-    public async Task UpdatePostAsync(Post post, string userId)
+    public async Task UpdatePostAsync(Post post, int userId)
     {
         if (string.IsNullOrWhiteSpace(post.Title) || string.IsNullOrWhiteSpace(post.Content))
             throw new ArgumentException("Title and content are required", nameof(post));
@@ -45,7 +45,7 @@ public class PostService : IPostService
         await _posts.UpdateAsync(existing);
     }
 
-    public async Task DeletePostAsync(int id, string userId)
+    public async Task DeletePostAsync(int id, int userId)
     {
         var existing = await _posts.GetByIdAsync(id);
         if (existing == null) throw new KeyNotFoundException("Post not found");

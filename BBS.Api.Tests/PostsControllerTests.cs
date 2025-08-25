@@ -31,7 +31,7 @@ public class PostsControllerTests
                 {
                     User = new ClaimsPrincipal(new ClaimsIdentity(new[]
                     {
-                        new Claim(ClaimTypes.Name, "user@example.com")
+                        new Claim(ClaimTypes.Name, "1")
                     }))
                 }
             }
@@ -64,7 +64,7 @@ public class PostsControllerTests
             var createdPost = Assert.IsType<Post>(created.Value);
 
             Assert.Equal("Hello", createdPost.Title);
-            Assert.Equal("user@example.com", createdPost.AuthorId);
+            Assert.Equal(1, createdPost.AuthorId);
             Assert.Single(context.Posts);
         }
     }

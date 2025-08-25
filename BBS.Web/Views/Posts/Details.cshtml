@@ -1,7 +1,7 @@
 @model Post
 @{
     ViewData["Title"] = "Post Details";
-    var user = Context.Session.GetString("user");
+    var userId = Context.Session.GetString("userId");
 }
 
 <div class="card">
@@ -9,7 +9,7 @@
         <h5 class="card-title">@Model.Title</h5>
         <p class="card-text">@Model.Content</p>
         <a asp-action="Index" class="btn btn-secondary">Back</a>
-        @if (user == Model.AuthorId)
+        @if (userId != null && int.Parse(userId) == Model.AuthorId)
         {
             <a class="btn btn-warning" href="/Posts/Edit/@Model.Id">Edit</a>
         }

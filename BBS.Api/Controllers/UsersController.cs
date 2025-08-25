@@ -24,19 +24,19 @@ public class UsersController : ControllerBase
         return Ok(users);
     }
 
-    [HttpGet("{id}")]
-    public async Task<ActionResult<User>> GetUser(string id)
+    [HttpGet("{loginId}")]
+    public async Task<ActionResult<User>> GetUser(string loginId)
     {
-        var user = await _service.GetUserAsync(id);
+        var user = await _service.GetUserAsync(loginId);
         if (user == null) return NotFound();
         return Ok(user);
     }
 
-    [HttpDelete("{id}")]
+    [HttpDelete("{loginId}")]
     [Authorize]
-    public async Task<IActionResult> DeleteUser(string id)
+    public async Task<IActionResult> DeleteUser(string loginId)
     {
-        await _service.DeleteUserAsync(id);
+        await _service.DeleteUserAsync(loginId);
         return NoContent();
     }
 }

@@ -27,6 +27,6 @@ public class PostServiceTests
         var post = new Post { Title = "", Content = "content" };
 
         await Assert.ThrowsAsync<ArgumentException>(
-            () => service.CreatePostAsync(post, "user@example.com"));
+            () => service.CreatePostAsync(post, 1));
     }
 }

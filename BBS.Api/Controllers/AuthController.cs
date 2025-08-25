@@ -46,7 +46,7 @@ public class AuthController : ControllerBase
         var token = new JwtSecurityToken(
             issuer: _configuration["Jwt:Issuer"],
             audience: _configuration["Jwt:Audience"],
-            claims: new[] { new Claim(ClaimTypes.Name, user.Id) }
+            claims: new[] { new Claim(ClaimTypes.Name, user.Id.ToString()) }
                 .Concat(user.Roles.Select(r => new Claim(ClaimTypes.Role, r.ToString()))),
             expires: DateTime.UtcNow.AddHours(1),
             signingCredentials: creds);
