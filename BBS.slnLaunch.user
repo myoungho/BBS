@@ -1,0 +1,15 @@
+[
+  {
+    "Name": "New Profile",
+    "Projects": [
+      {
+        "Path": "BBS.Api\\BBS.Api.csproj",
+        "Action": "Start"
+      },
+      {
+        "Path": "BBS.Web\\BBS.Web.csproj",
+        "Action": "Start"
+      }
+    ]
+  }
+]

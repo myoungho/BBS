@@ -1,0 +1,12 @@
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\bin\Debug\net8.0\BBS.Domain.deps.json
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\bin\Debug\net8.0\BBS.Domain.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\bin\Debug\net8.0\BBS.Domain.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\BBS.Domain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\BBS.Domain.AssemblyInfoInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\BBS.Domain.AssemblyInfo.cs
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\BBS.Domain.csproj.CoreCompileInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\BBS.Domain.sourcelink.json
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\BBS.Domain.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\refint\BBS.Domain.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\BBS.Domain.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Domain\obj\Debug\net8.0\ref\BBS.Domain.dll

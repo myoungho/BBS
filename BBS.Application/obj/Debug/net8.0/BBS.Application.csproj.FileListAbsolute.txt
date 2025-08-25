@@ -1,0 +1,16 @@
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\bin\Debug\net8.0\BBS.Application.deps.json
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\bin\Debug\net8.0\BBS.Application.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\bin\Debug\net8.0\BBS.Application.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\bin\Debug\net8.0\BBS.Domain.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\bin\Debug\net8.0\BBS.Domain.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.csproj.AssemblyReference.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.AssemblyInfoInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.AssemblyInfo.cs
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.csproj.CoreCompileInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.sourcelink.json
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Appl.CB447C21.Up2Date
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\refint\BBS.Application.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\BBS.Application.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Application\obj\Debug\net8.0\ref\BBS.Application.dll

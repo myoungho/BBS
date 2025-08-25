@@ -1,0 +1,16 @@
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.csproj.AssemblyReference.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.AssemblyInfoInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.AssemblyInfo.cs
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.csproj.CoreCompileInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.sourcelink.json
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\bin\Debug\net8.0\BBS.Infrastructure.deps.json
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\bin\Debug\net8.0\BBS.Infrastructure.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\bin\Debug\net8.0\BBS.Infrastructure.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\bin\Debug\net8.0\BBS.Domain.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\bin\Debug\net8.0\BBS.Domain.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infr.2C09F38C.Up2Date
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\refint\BBS.Infrastructure.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.pdb
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\ref\BBS.Infrastructure.dll

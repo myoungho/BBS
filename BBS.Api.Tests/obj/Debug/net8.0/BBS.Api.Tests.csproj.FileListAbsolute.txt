@@ -1,0 +1,6 @@
+C:\Users\mingh\Documents\Project\BBS\BBS.Api.Tests\obj\Debug\net8.0\BBS.Api.Tests.csproj.AssemblyReference.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Api.Tests\obj\Debug\net8.0\BBS.Api.Tests.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mingh\Documents\Project\BBS\BBS.Api.Tests\obj\Debug\net8.0\BBS.Api.Tests.AssemblyInfoInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Api.Tests\obj\Debug\net8.0\BBS.Api.Tests.AssemblyInfo.cs
+C:\Users\mingh\Documents\Project\BBS\BBS.Api.Tests\obj\Debug\net8.0\BBS.Api.Tests.csproj.CoreCompileInputs.cache
+C:\Users\mingh\Documents\Project\BBS\BBS.Api.Tests\obj\Debug\net8.0\BBS.Api.Tests.sourcelink.json
