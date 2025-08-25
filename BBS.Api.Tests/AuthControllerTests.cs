@@ -1,6 +1,7 @@
 using BBS.Api.Controllers;
 using BBS.Application.Services;
 using BBS.Domain.Entities;
+using BBS.Domain.Enums;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using BBS.Infrastructure.Repositories;
@@ -55,6 +56,19 @@ public class AuthControllerTests
             await controller.Register(new RegisterDto("test1@example.com", "pass", "nick"));
             var result = await controller.Register(new RegisterDto("test2@example.com", "pass", "nick"));
             Assert.IsType<ConflictResult>(result);
+        }
+    }
+
+    [Fact]
+    public async Task Register_AssignsReaderRoleByDefault()
+    {
+        var (context, controller) = CreateController();
+        using (context)
+        {
+            await controller.Register(new RegisterDto("test@example.com", "pass", "nick"));
+            var user = await context.Users.FindAsync("test@example.com");
+            Assert.NotNull(user);
+            Assert.Contains(Role.Reader, user!.Roles);
         }
     }
 }

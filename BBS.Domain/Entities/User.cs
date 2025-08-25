@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using BBS.Domain.Enums;
 
 namespace BBS.Domain.Entities;
 
@@ -12,5 +14,7 @@ public class User
 
     [Required]
     public string PasswordHash { get; set; } = default!;
+
+    public List<Role> Roles { get; set; } = new() { Role.Reader };
 }
 
