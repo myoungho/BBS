@@ -12,5 +12,5 @@ Simple bulletin board REST API built with ASP.NET Core and EF Core.
 2. Restore and run the API:
    ```bash
    dotnet build
-   dotnet run --project Bbs.Api
+   dotnet run --project BBS.Api
    ```

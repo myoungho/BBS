@@ -1,8 +1,8 @@
-using Bbs.Core.Data;
+using BBS.Core.Data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bbs.Mvc.Controllers;
+namespace BBS.Web.Controllers;
 
 public class PostsController : Controller
 {

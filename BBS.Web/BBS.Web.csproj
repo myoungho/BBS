@@ -9,6 +9,6 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\\Bbs.Core\\Bbs.Core.csproj" />
+    <ProjectReference Include="..\\BBS.Core\\BBS.Core.csproj" />
   </ItemGroup>
 </Project>

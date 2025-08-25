@@ -1,9 +1,9 @@
-using Bbs.Core.Data;
-using Bbs.Core.Models;
+using BBS.Core.Data;
+using BBS.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bbs.Api.Controllers;
+namespace BBS.Api.Controllers;
 
 [ApiController]
 [Route("api/[controller]")]

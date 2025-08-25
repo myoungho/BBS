@@ -1,4 +1,4 @@
-using Bbs.Core.Data;
+using BBS.Core.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);

@@ -1,7 +1,7 @@
-using Bbs.Core.Models;
+using BBS.Core.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace Bbs.Core.Data;
+namespace BBS.Core.Data;
 
 public class BbsContext : DbContext
 {

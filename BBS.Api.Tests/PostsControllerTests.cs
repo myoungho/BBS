@@ -1,11 +1,11 @@
-using Bbs.Api.Controllers;
-using Bbs.Core.Data;
-using Bbs.Core.Models;
+using BBS.Api.Controllers;
+using BBS.Core.Data;
+using BBS.Core.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
 
-namespace Bbs.Api.Tests;
+namespace BBS.Api.Tests;
 
 public class PostsControllerTests
 {

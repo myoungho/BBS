@@ -14,9 +14,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="8.0.0" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bbs.Api\Bbs.Api.csproj" />
+    <ProjectReference Include="..\BBS.Api\BBS.Api.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Bbs.Core\Bbs.Core.csproj" />
+    <ProjectReference Include="..\BBS.Core\BBS.Core.csproj" />
   </ItemGroup>
 </Project>
