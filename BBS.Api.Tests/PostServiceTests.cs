@@ -19,7 +19,10 @@ public class PostServiceTests
         var postRepo = new Repository<Post>(context);
         var commentRepo = new Repository<Comment>(context);
         var attachmentRepo = new Repository<Attachment>(context);
-        return new PostService(postRepo, commentRepo, attachmentRepo);
+        var settingRepo = new Repository<BbsSetting>(context);
+        context.BbsSettings.Add(new BbsSetting { AllowedFileExtensions = "txt" });
+        context.SaveChanges();
+        return new PostService(postRepo, commentRepo, attachmentRepo, settingRepo);
     }
 
     [Fact]
@@ -37,8 +40,8 @@ public class PostServiceTests
     {
         var service = CreateService();
         var post = await service.CreatePostAsync(new Post { Title = "t", Content = "c" }, 1);
-        await service.AddAttachmentAsync(post.Id, new Attachment { FileName = "a1.txt" });
-        await service.AddAttachmentAsync(post.Id, new Attachment { FileName = "a2.txt" });
+        await service.AddAttachmentAsync(post.Id, new Attachment { FileName = "a1.txt", FileUrl = "http://example.com/a1.txt" });
+        await service.AddAttachmentAsync(post.Id, new Attachment { FileName = "a2.txt", FileUrl = "http://example.com/a2.txt" });
 
         var attachments = await service.GetAttachmentsAsync(post.Id);
         Assert.Equal(2, attachments.Count());
