@@ -1,21 +1,22 @@
-using BBS.Core.Data;
+using System.Net.Http;
+using System.Net.Http.Json;
+using BBS.Core.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BBS.Web.Controllers;
 
 public class PostsController : Controller
 {
-    private readonly BbsContext _context;
+    private readonly HttpClient _client;
 
-    public PostsController(BbsContext context)
+    public PostsController(IHttpClientFactory httpClientFactory)
     {
-        _context = context;
+        _client = httpClientFactory.CreateClient("BbsApi");
     }
 
     public async Task<IActionResult> Index()
     {
-        var posts = await _context.Posts.Include(p => p.Comments).ToListAsync();
-        return View(posts);
+        var posts = await _client.GetFromJsonAsync<List<Post>>("api/posts");
+        return View(posts ?? new List<Post>());
     }
 }
