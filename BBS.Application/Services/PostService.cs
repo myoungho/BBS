@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.IO;
 using BBS.Domain.Entities;
 using BBS.Domain.Repositories;
 
@@ -11,12 +12,18 @@ public class PostService : IPostService
     private readonly IRepository<Post> _posts;
     private readonly IRepository<Comment> _comments;
     private readonly IRepository<Attachment> _attachments;
+    private readonly IRepository<BbsSetting> _settings;
 
-    public PostService(IRepository<Post> posts, IRepository<Comment> comments, IRepository<Attachment> attachments)
+    public PostService(
+        IRepository<Post> posts,
+        IRepository<Comment> comments,
+        IRepository<Attachment> attachments,
+        IRepository<BbsSetting> settings)
     {
         _posts = posts;
         _comments = comments;
         _attachments = attachments;
+        _settings = settings;
     }
 
     public async Task<IEnumerable<Post>> GetPostsAsync() => await _posts.GetAllAsync();
@@ -78,9 +85,24 @@ public class PostService : IPostService
     {
         if (string.IsNullOrWhiteSpace(attachment.FileName))
             throw new ArgumentException("File name is required", nameof(attachment));
+        if (string.IsNullOrWhiteSpace(attachment.FileUrl))
+            throw new ArgumentException("File URL is required", nameof(attachment));
 
         var post = await _posts.GetByIdAsync(postId);
         if (post == null) throw new InvalidOperationException("Post not found");
+
+        var settings = (await _settings.GetAllAsync()).FirstOrDefault();
+        if (settings != null && !string.IsNullOrWhiteSpace(settings.AllowedFileExtensions))
+        {
+            var allowed = settings.AllowedFileExtensions
+                .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                .Select(e => e.Trim().TrimStart('.').ToLowerInvariant());
+            var ext = Path.GetExtension(attachment.FileName)
+                .TrimStart('.').ToLowerInvariant();
+            if (!allowed.Contains(ext))
+                throw new ArgumentException("File type not allowed", nameof(attachment));
+        }
+
         attachment.PostId = postId;
         return await _attachments.AddAsync(attachment);
     }

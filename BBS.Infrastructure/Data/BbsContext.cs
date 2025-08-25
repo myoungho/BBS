@@ -13,6 +13,7 @@ public class BbsContext : DbContext
     public DbSet<Role> Roles => Set<Role>();
     public DbSet<UserRole> UserRoles => Set<UserRole>();
     public DbSet<Attachment> Attachments => Set<Attachment>();
+    public DbSet<BbsSetting> BbsSettings => Set<BbsSetting>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {

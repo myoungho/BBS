@@ -23,7 +23,10 @@ public class PostsControllerTests
         IRepository<Post> postRepository = new Repository<Post>(context);
         IRepository<Comment> commentRepository = new Repository<Comment>(context);
         IRepository<Attachment> attachmentRepository = new Repository<Attachment>(context);
-        IPostService service = new PostService(postRepository, commentRepository, attachmentRepository);
+        IRepository<BbsSetting> settingRepository = new Repository<BbsSetting>(context);
+        context.BbsSettings.Add(new BbsSetting { AllowedFileExtensions = "txt" });
+        context.SaveChanges();
+        IPostService service = new PostService(postRepository, commentRepository, attachmentRepository, settingRepository);
         var controller = new PostsController(service)
         {
             ControllerContext = new ControllerContext
@@ -79,7 +82,7 @@ public class PostsControllerTests
             var postResult = await controller.CreatePost(new Post { Title = "Hello", Content = "World" });
             var createdPost = Assert.IsType<Post>(Assert.IsType<CreatedAtActionResult>(postResult.Result).Value);
 
-            var attachment = new Attachment { FileName = "file.txt" };
+            var attachment = new Attachment { FileName = "file.txt", FileUrl = "http://example.com/file.txt" };
             var result = await controller.AddAttachment(createdPost.Id, attachment);
             var created = Assert.IsType<CreatedAtActionResult>(result.Result);
             var createdAttachment = Assert.IsType<Attachment>(created.Value);
