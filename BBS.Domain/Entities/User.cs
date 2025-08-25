@@ -7,7 +7,10 @@ namespace BBS.Domain.Entities;
 public class User
 {
     [Key]
-    public string Id { get; set; } = default!; // Email as ID
+    public int Id { get; set; }
+
+    [Required]
+    public string LoginId { get; set; } = default!; // Email as login ID
 
     [Required]
     public string Nickname { get; set; } = default!;

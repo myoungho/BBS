@@ -41,7 +41,7 @@ public class PostsController : ControllerBase
     {
         try
         {
-            var userId = User.Identity!.Name!;
+            var userId = int.Parse(User.Identity!.Name!);
             var created = await _service.CreatePostAsync(post, userId);
             return CreatedAtAction(nameof(GetPost), new { id = created.Id }, created);
         }
@@ -55,7 +55,7 @@ public class PostsController : ControllerBase
     [Authorize]
     public async Task<IActionResult> UpdatePost(int id, Post post)
     {
-        var userId = User.Identity!.Name!;
+        var userId = int.Parse(User.Identity!.Name!);
         post.Id = id;
         try
         {
@@ -80,7 +80,7 @@ public class PostsController : ControllerBase
     [Authorize]
     public async Task<IActionResult> DeletePost(int id)
     {
-        var userId = User.Identity!.Name!;
+        var userId = int.Parse(User.Identity!.Name!);
         try
         {
             await _service.DeletePostAsync(id, userId);

@@ -16,14 +16,14 @@
     @foreach (var user in Model)
     {
         <tr>
-            <td>@user.Id</td>
+            <td>@user.LoginId</td>
             <td>@user.Nickname</td>
             <td>@string.Join(", ", user.Roles)</td>
             <td>
-                <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@user.Id">Details</a>
+                <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@user.LoginId">Details</a>
                 @if (Context.Session.GetString("token") != null)
                 {
-                    <form asp-action="Delete" asp-route-id="@user.Id" method="post" style="display:inline">
+                    <form asp-action="Delete" asp-route-id="@user.LoginId" method="post" style="display:inline">
                         <button type="submit" class="btn btn-sm btn-danger">Delete</button>
                     </form>
                 }

@@ -18,14 +18,14 @@ public class UserService : IUserService
         _repository = repository;
     }
 
-    public async Task<bool> RegisterAsync(string email, string password, string nickname, IEnumerable<Role>? roles = null)
+    public async Task<bool> RegisterAsync(string loginId, string password, string nickname, IEnumerable<Role>? roles = null)
     {
-        if (await _repository.GetByIdAsync(email) != null) return false;
+        if ((await _repository.GetAllAsync()).Any(u => u.LoginId == loginId)) return false;
         if ((await _repository.GetAllAsync()).Any(u => u.Nickname == nickname)) return false;
 
         var user = new User
         {
-            Id = email,
+            LoginId = loginId,
             Nickname = nickname,
             PasswordHash = Hash(password),
             Roles = roles?.ToList() ?? new List<Role> { Role.Reader }
@@ -34,9 +34,9 @@ public class UserService : IUserService
         return true;
     }
 
-    public async Task<User?> AuthenticateAsync(string email, string password)
+    public async Task<User?> AuthenticateAsync(string loginId, string password)
     {
-        var user = await _repository.GetByIdAsync(email);
+        var user = (await _repository.GetAllAsync()).FirstOrDefault(u => u.LoginId == loginId);
         if (user == null) return null;
         return user.PasswordHash == Hash(password) ? user : null;
     }
@@ -46,14 +46,18 @@ public class UserService : IUserService
         return await _repository.GetAllAsync();
     }
 
-    public async Task<User?> GetUserAsync(string email)
+    public async Task<User?> GetUserAsync(string loginId)
     {
-        return await _repository.GetByIdAsync(email);
+        return (await _repository.GetAllAsync()).FirstOrDefault(u => u.LoginId == loginId);
     }
 
-    public async Task DeleteUserAsync(string email)
+    public async Task DeleteUserAsync(string loginId)
     {
-        await _repository.DeleteAsync(email);
+        var user = await GetUserAsync(loginId);
+        if (user != null)
+        {
+            await _repository.DeleteAsync(user.Id);
+        }
     }
 
     private static string Hash(string input)

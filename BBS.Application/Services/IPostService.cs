@@ -8,9 +8,9 @@ public interface IPostService
 {
     Task<IEnumerable<Post>> GetPostsAsync();
     Task<Post?> GetPostAsync(int id);
-    Task<Post> CreatePostAsync(Post post, string authorId);
-    Task UpdatePostAsync(Post post, string userId);
-    Task DeletePostAsync(int id, string userId);
+    Task<Post> CreatePostAsync(Post post, int authorId);
+    Task UpdatePostAsync(Post post, int userId);
+    Task DeletePostAsync(int id, int userId);
     Task<Comment> AddCommentAsync(int postId, Comment comment);
     Task<IEnumerable<Comment>> GetCommentsAsync(int postId);
 }

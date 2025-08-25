@@ -1,12 +1,12 @@
 @model IEnumerable<Post>
 @{
     ViewData["Title"] = "Posts";
-    var user = Context.Session.GetString("user");
+    var userId = Context.Session.GetString("userId");
 }
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>Posts</h1>
-    @if (user != null)
+    @if (userId != null)
     {
         <a class="btn btn-primary" href="/Posts/Create">New Post</a>
     }
@@ -19,7 +19,7 @@
             <h5 class="card-title">@post.Title</h5>
             <p class="card-text">@post.Content</p>
             <a class="btn btn-sm btn-secondary" href="/Posts/Details/@post.Id">View</a>
-            @if (user == post.AuthorId)
+            @if (userId != null && int.Parse(userId) == post.AuthorId)
             {
                 <a class="btn btn-sm btn-warning" href="/Posts/Edit/@post.Id">Edit</a>
                 <form method="post" asp-action="Delete" asp-route-id="@post.Id" class="d-inline">
