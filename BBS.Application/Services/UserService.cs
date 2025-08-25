@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
@@ -36,6 +37,21 @@ public class UserService : IUserService
         var user = await _repository.GetByIdAsync(email);
         if (user == null) return null;
         return user.PasswordHash == Hash(password) ? user : null;
+    }
+
+    public async Task<List<User>> GetUsersAsync()
+    {
+        return await _repository.GetAllAsync();
+    }
+
+    public async Task<User?> GetUserAsync(string email)
+    {
+        return await _repository.GetByIdAsync(email);
+    }
+
+    public async Task DeleteUserAsync(string email)
+    {
+        await _repository.DeleteAsync(email);
     }
 
     private static string Hash(string input)
