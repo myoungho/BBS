@@ -1,10 +1,11 @@
 using System.Collections.Generic;
+using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace BBS.Infrastructure.Repositories;
 
-public class Repository<T> where T : class
+public class Repository<T, TKey> : IRepository<T, TKey> where T : class
 {
     protected readonly BbsContext _context;
     protected readonly DbSet<T> _dbSet;
@@ -20,7 +21,7 @@ public class Repository<T> where T : class
         return await _dbSet.ToListAsync();
     }
 
-    public virtual async Task<T?> GetByIdAsync(int id)
+    public virtual async Task<T?> GetByIdAsync(TKey id)
     {
         return await _dbSet.FindAsync(id).AsTask();
     }
@@ -38,7 +39,7 @@ public class Repository<T> where T : class
         await _context.SaveChangesAsync();
     }
 
-    public virtual async Task DeleteAsync(int id)
+    public virtual async Task DeleteAsync(TKey id)
     {
         var entity = await GetByIdAsync(id);
         if (entity != null)

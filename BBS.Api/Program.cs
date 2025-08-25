@@ -15,8 +15,7 @@ builder.Services.AddControllers();
 // Configure EF Core and repositories
 builder.Services.AddDbContext<BbsContext>(options =>
     options.UseInMemoryDatabase("Bbs"));
-builder.Services.AddScoped<IPostRepository, PostRepository>();
-builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
