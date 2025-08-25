@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using BBS.Application.Services;
 using BBS.Domain.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BBS.Api.Controllers;
@@ -35,6 +36,7 @@ public class PostsController : ControllerBase
     }
 
     [HttpPost]
+    [Authorize]
     public async Task<ActionResult<Post>> CreatePost(Post post)
     {
         var created = await _service.CreatePostAsync(post);
@@ -42,6 +44,7 @@ public class PostsController : ControllerBase
     }
 
     [HttpPost("{postId}/comments")]
+    [Authorize]
     public async Task<ActionResult<Comment>> AddComment(int postId, Comment comment)
     {
         try
@@ -69,3 +72,4 @@ public class PostsController : ControllerBase
         }
     }
 }
+
