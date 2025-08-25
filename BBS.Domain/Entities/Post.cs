@@ -9,4 +9,5 @@ public class Post
     public string Content { get; set; } = string.Empty;
     public int AuthorId { get; set; }
     public List<Comment> Comments { get; set; } = new();
+    public List<Attachment> Attachments { get; set; } = new();
 }

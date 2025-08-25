@@ -22,7 +22,8 @@ public class PostsControllerTests
         var context = new BbsContext(options);
         IRepository<Post> postRepository = new Repository<Post>(context);
         IRepository<Comment> commentRepository = new Repository<Comment>(context);
-        IPostService service = new PostService(postRepository, commentRepository);
+        IRepository<Attachment> attachmentRepository = new Repository<Attachment>(context);
+        IPostService service = new PostService(postRepository, commentRepository, attachmentRepository);
         var controller = new PostsController(service)
         {
             ControllerContext = new ControllerContext
@@ -66,6 +67,26 @@ public class PostsControllerTests
             Assert.Equal("Hello", createdPost.Title);
             Assert.Equal(1, createdPost.AuthorId);
             Assert.Single(context.Posts);
+        }
+    }
+
+    [Fact]
+    public async Task AddAttachment_PersistsAttachment()
+    {
+        var (context, controller) = CreateController();
+        using (context)
+        {
+            var postResult = await controller.CreatePost(new Post { Title = "Hello", Content = "World" });
+            var createdPost = Assert.IsType<Post>(Assert.IsType<CreatedAtActionResult>(postResult.Result).Value);
+
+            var attachment = new Attachment { FileName = "file.txt" };
+            var result = await controller.AddAttachment(createdPost.Id, attachment);
+            var created = Assert.IsType<CreatedAtActionResult>(result.Result);
+            var createdAttachment = Assert.IsType<Attachment>(created.Value);
+
+            Assert.Equal("file.txt", createdAttachment.FileName);
+            Assert.Equal(createdPost.Id, createdAttachment.PostId);
+            Assert.Single(context.Attachments);
         }
     }
 }
