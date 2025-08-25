@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BBS.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d72591f9ccbc28afee2b87700d717ea060a6f594")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+de1b70885e7087e8030b183bebb3021fc2e890d6")]
 [assembly: System.Reflection.AssemblyProductAttribute("BBS.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BBS.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -14,3 +14,5 @@ C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Inf
 C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\refint\BBS.Infrastructure.dll
 C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.pdb
 C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\ref\BBS.Infrastructure.dll
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\bin\Debug\net8.0\BBS.Infrastructure.runtimeconfig.json
+C:\Users\mingh\Documents\Project\BBS\BBS.Infrastructure\obj\Debug\net8.0\BBS.Infrastructure.genruntimeconfig.cache
