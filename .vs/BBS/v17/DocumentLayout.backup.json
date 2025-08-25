@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\mingh\\Documents\\Project\\BBS\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|solutionrelative:bbs.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|solutionrelative:bbs.web\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2DBB80C2-09BF-4CBE-8481-ED52ACC08C24}|BBS.Api\\BBS.Api.csproj|solutionrelative:bbs.api\\controllers\\authcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{468FE439-6DDA-4796-B1AC-0C6A9FF96943}|BBS.Web\\BBS.Web.csproj|c:\\users\\mingh\\documents\\project\\bbs\\bbs.web\\controllers\\postscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -30,7 +30,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 184,
-          "SelectedChildIndex": 23,
+          "SelectedChildIndex": 24,
           "Children": [
             {
               "$type": "Bookmark",
@@ -126,26 +126,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AuthController.cs",
               "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Api\\Controllers\\AuthController.cs",
               "RelativeDocumentMoniker": "BBS.Api\\Controllers\\AuthController.cs",
               "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Api\\Controllers\\AuthController.cs",
               "RelativeToolTip": "BBS.Api\\Controllers\\AuthController.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAAAAC0AAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAACMAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-25T15:20:09.721Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "AccountController.cs",
               "DocumentMoniker": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\AccountController.cs",
               "RelativeDocumentMoniker": "BBS.Web\\Controllers\\AccountController.cs",
               "ToolTip": "C:\\Users\\mingh\\Documents\\Project\\BBS\\BBS.Web\\Controllers\\AccountController.cs",
               "RelativeToolTip": "BBS.Web\\Controllers\\AccountController.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAACQAAAAIAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAACUAAAAIAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-08-25T15:15:58.717Z",
               "EditorCaption": ""
