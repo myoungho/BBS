@@ -1,6 +1,9 @@
 using BBS.Api.Controllers;
-using BBS.Core.Data;
-using BBS.Core.Models;
+using BBS.Application.Services;
+using BBS.Domain.Entities;
+using BBS.Domain.Repositories;
+using BBS.Infrastructure.Data;
+using BBS.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Xunit;
@@ -9,37 +12,44 @@ namespace BBS.Api.Tests;
 
 public class PostsControllerTests
 {
-    private static BbsContext CreateContext()
+    private static (BbsContext context, PostsController controller) CreateController()
     {
         var options = new DbContextOptionsBuilder<BbsContext>()
             .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
             .Options;
-        return new BbsContext(options);
+        var context = new BbsContext(options);
+        IPostRepository repository = new PostRepository(context);
+        IPostService service = new PostService(repository);
+        var controller = new PostsController(service);
+        return (context, controller);
     }
 
     [Fact]
     public async Task GetPost_ReturnsNotFound_WhenPostMissing()
     {
-        using var context = CreateContext();
-        var controller = new PostsController(context);
+        var (context, controller) = CreateController();
+        using (context)
+        {
+            var result = await controller.GetPost(1);
 
-        var result = await controller.GetPost(1);
-
-        Assert.IsType<NotFoundResult>(result.Result);
+            Assert.IsType<NotFoundResult>(result.Result);
+        }
     }
 
     [Fact]
     public async Task CreatePost_PersistsPost()
     {
-        using var context = CreateContext();
-        var controller = new PostsController(context);
-        var newPost = new Post { Title = "Hello", Content = "World" };
+        var (context, controller) = CreateController();
+        using (context)
+        {
+            var newPost = new Post { Title = "Hello", Content = "World" };
 
-        var actionResult = await controller.CreatePost(newPost);
-        var created = Assert.IsType<CreatedAtActionResult>(actionResult.Result);
-        var createdPost = Assert.IsType<Post>(created.Value);
+            var actionResult = await controller.CreatePost(newPost);
+            var created = Assert.IsType<CreatedAtActionResult>(actionResult.Result);
+            var createdPost = Assert.IsType<Post>(created.Value);
 
-        Assert.Equal("Hello", createdPost.Title);
-        Assert.Single(context.Posts);
+            Assert.Equal("Hello", createdPost.Title);
+            Assert.Single(context.Posts);
+        }
     }
 }

@@ -1,4 +1,6 @@
-namespace BBS.Core.Models;
+using System.Collections.Generic;
+
+namespace BBS.Domain.Entities;
 
 public class Post
 {

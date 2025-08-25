@@ -1,7 +1,7 @@
-using BBS.Core.Data;
-using BBS.Core.Models;
+using System.Collections.Generic;
+using BBS.Application.Services;
+using BBS.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 
 namespace BBS.Api.Controllers;
 
@@ -9,61 +9,63 @@ namespace BBS.Api.Controllers;
 [Route("api/[controller]")]
 public class PostsController : ControllerBase
 {
-    private readonly BbsContext _context;
+    private readonly IPostService _service;
 
-    public PostsController(BbsContext context)
+    public PostsController(IPostService service)
     {
-        _context = context;
+        _service = service;
     }
 
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Post>>> GetPosts()
     {
-        return await _context.Posts.Include(p => p.Comments).ToListAsync();
+        var posts = await _service.GetPostsAsync();
+        return Ok(posts);
     }
 
     [HttpGet("{id}")]
     public async Task<ActionResult<Post>> GetPost(int id)
     {
-        var post = await _context.Posts.Include(p => p.Comments)
-            .FirstOrDefaultAsync(p => p.Id == id);
+        var post = await _service.GetPostAsync(id);
         if (post == null)
         {
             return NotFound();
         }
-        return post;
+        return Ok(post);
     }
 
     [HttpPost]
     public async Task<ActionResult<Post>> CreatePost(Post post)
     {
-        _context.Posts.Add(post);
-        await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetPost), new { id = post.Id }, post);
+        var created = await _service.CreatePostAsync(post);
+        return CreatedAtAction(nameof(GetPost), new { id = created.Id }, created);
     }
 
     [HttpPost("{postId}/comments")]
     public async Task<ActionResult<Comment>> AddComment(int postId, Comment comment)
     {
-        var post = await _context.Posts.FindAsync(postId);
-        if (post == null)
+        try
+        {
+            var created = await _service.AddCommentAsync(postId, comment);
+            return CreatedAtAction(nameof(GetPost), new { id = postId }, created);
+        }
+        catch (InvalidOperationException)
         {
             return NotFound();
         }
-        comment.PostId = postId;
-        _context.Comments.Add(comment);
-        await _context.SaveChangesAsync();
-        return CreatedAtAction(nameof(GetPost), new { id = postId }, comment);
     }
 
     [HttpGet("{postId}/comments")]
     public async Task<ActionResult<IEnumerable<Comment>>> GetComments(int postId)
     {
-        var post = await _context.Posts.FindAsync(postId);
-        if (post == null)
+        try
+        {
+            var comments = await _service.GetCommentsAsync(postId);
+            return Ok(comments);
+        }
+        catch (InvalidOperationException)
         {
             return NotFound();
         }
-        return await _context.Comments.Where(c => c.PostId == postId).ToListAsync();
     }
 }
