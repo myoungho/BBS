@@ -39,8 +39,30 @@ public class PostsController : ControllerBase
     [Authorize]
     public async Task<ActionResult<Post>> CreatePost(Post post)
     {
-        var created = await _service.CreatePostAsync(post);
+        var userId = User.Identity!.Name!;
+        var created = await _service.CreatePostAsync(post, userId);
         return CreatedAtAction(nameof(GetPost), new { id = created.Id }, created);
+    }
+
+    [HttpPut("{id}")]
+    [Authorize]
+    public async Task<IActionResult> UpdatePost(int id, Post post)
+    {
+        var userId = User.Identity!.Name!;
+        post.Id = id;
+        var ok = await _service.UpdatePostAsync(post, userId);
+        if (!ok) return Forbid();
+        return NoContent();
+    }
+
+    [HttpDelete("{id}")]
+    [Authorize]
+    public async Task<IActionResult> DeletePost(int id)
+    {
+        var userId = User.Identity!.Name!;
+        var ok = await _service.DeletePostAsync(id, userId);
+        if (!ok) return Forbid();
+        return NoContent();
     }
 
     [HttpPost("{postId}/comments")]

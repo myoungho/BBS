@@ -1,0 +1,17 @@
+@model Post
+@{
+    ViewData["Title"] = "Post Details";
+    var user = Context.Session.GetString("user");
+}
+
+<div class="card">
+    <div class="card-body">
+        <h5 class="card-title">@Model.Title</h5>
+        <p class="card-text">@Model.Content</p>
+        <a asp-action="Index" class="btn btn-secondary">Back</a>
+        @if (user == Model.AuthorId)
+        {
+            <a class="btn btn-warning" href="/Posts/Edit/@Model.Id">Edit</a>
+        }
+    </div>
+</div>

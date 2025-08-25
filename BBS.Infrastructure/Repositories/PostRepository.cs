@@ -17,6 +17,10 @@ public class PostRepository : Repository<Post>, IPostRepository
 
     public async Task<Post> AddPostAsync(Post post) => await AddAsync(post);
 
+    public async Task UpdatePostAsync(Post post) => await UpdateAsync(post);
+
+    public async Task DeletePostAsync(int id) => await DeleteAsync(id);
+
     public async Task<Comment> AddCommentAsync(int postId, Comment comment)
     {
         var post = await _context.Posts.FindAsync(postId);
