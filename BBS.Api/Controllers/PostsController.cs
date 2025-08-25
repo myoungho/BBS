@@ -39,9 +39,16 @@ public class PostsController : ControllerBase
     [Authorize]
     public async Task<ActionResult<Post>> CreatePost(Post post)
     {
-        var userId = User.Identity!.Name!;
-        var created = await _service.CreatePostAsync(post, userId);
-        return CreatedAtAction(nameof(GetPost), new { id = created.Id }, created);
+        try
+        {
+            var userId = User.Identity!.Name!;
+            var created = await _service.CreatePostAsync(post, userId);
+            return CreatedAtAction(nameof(GetPost), new { id = created.Id }, created);
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpPut("{id}")]
@@ -50,9 +57,23 @@ public class PostsController : ControllerBase
     {
         var userId = User.Identity!.Name!;
         post.Id = id;
-        var ok = await _service.UpdatePostAsync(post, userId);
-        if (!ok) return Forbid();
-        return NoContent();
+        try
+        {
+            await _service.UpdatePostAsync(post, userId);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Forbid();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
+        }
     }
 
     [HttpDelete("{id}")]
@@ -60,9 +81,19 @@ public class PostsController : ControllerBase
     public async Task<IActionResult> DeletePost(int id)
     {
         var userId = User.Identity!.Name!;
-        var ok = await _service.DeletePostAsync(id, userId);
-        if (!ok) return Forbid();
-        return NoContent();
+        try
+        {
+            await _service.DeletePostAsync(id, userId);
+            return NoContent();
+        }
+        catch (KeyNotFoundException)
+        {
+            return NotFound();
+        }
+        catch (UnauthorizedAccessException)
+        {
+            return Forbid();
+        }
     }
 
     [HttpPost("{postId}/comments")]
@@ -77,6 +108,10 @@ public class PostsController : ControllerBase
         catch (InvalidOperationException)
         {
             return NotFound();
+        }
+        catch (ArgumentException ex)
+        {
+            return BadRequest(ex.Message);
         }
     }
 

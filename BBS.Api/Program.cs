@@ -1,9 +1,6 @@
 using BBS.Application.Services;
-using BBS.Domain.Repositories;
-using BBS.Infrastructure.Data;
-using BBS.Infrastructure.Repositories;
+using BBS.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
@@ -12,10 +9,8 @@ var builder = WebApplication.CreateBuilder(args);
 // Add services to the container.
 builder.Services.AddControllers();
 
-// Configure EF Core and repositories
-builder.Services.AddDbContext<BbsContext>(options =>
-    options.UseInMemoryDatabase("Bbs"));
-builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+// Configure infrastructure and application services
+builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<IPostService, PostService>();
 builder.Services.AddScoped<IUserService, UserService>();
 
