@@ -8,6 +8,7 @@
         <tr>
             <th>Email</th>
             <th>Nickname</th>
+            <th>Roles</th>
             <th></th>
         </tr>
     </thead>
@@ -17,6 +18,7 @@
         <tr>
             <td>@user.Id</td>
             <td>@user.Nickname</td>
+            <td>@string.Join(", ", user.Roles)</td>
             <td>
                 <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@user.Id">Details</a>
                 @if (Context.Session.GetString("token") != null)

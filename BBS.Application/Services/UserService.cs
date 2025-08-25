@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using BBS.Domain.Entities;
+using BBS.Domain.Enums;
 using BBS.Domain.Repositories;
 
 namespace BBS.Application.Services;
@@ -17,7 +18,7 @@ public class UserService : IUserService
         _repository = repository;
     }
 
-    public async Task<bool> RegisterAsync(string email, string password, string nickname)
+    public async Task<bool> RegisterAsync(string email, string password, string nickname, IEnumerable<Role>? roles = null)
     {
         if (await _repository.GetByIdAsync(email) != null) return false;
         if ((await _repository.GetAllAsync()).Any(u => u.Nickname == nickname)) return false;
@@ -26,7 +27,8 @@ public class UserService : IUserService
         {
             Id = email,
             Nickname = nickname,
-            PasswordHash = Hash(password)
+            PasswordHash = Hash(password),
+            Roles = roles?.ToList() ?? new List<Role> { Role.Reader }
         };
         await _repository.AddAsync(user);
         return true;

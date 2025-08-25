@@ -1,6 +1,7 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
+using System.Linq;
 using BBS.Application.Services;
 using BBS.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -45,7 +46,8 @@ public class AuthController : ControllerBase
         var token = new JwtSecurityToken(
             issuer: _configuration["Jwt:Issuer"],
             audience: _configuration["Jwt:Audience"],
-            claims: new[] { new Claim(ClaimTypes.Name, user.Id) },
+            claims: new[] { new Claim(ClaimTypes.Name, user.Id) }
+                .Concat(user.Roles.Select(r => new Claim(ClaimTypes.Role, r.ToString()))),
             expires: DateTime.UtcNow.AddHours(1),
             signingCredentials: creds);
         return new JwtSecurityTokenHandler().WriteToken(token);

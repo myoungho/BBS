@@ -1,6 +1,7 @@
 using BBS.Api.Controllers;
 using BBS.Application.Services;
 using BBS.Domain.Entities;
+using BBS.Domain.Enums;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using BBS.Infrastructure.Repositories;
@@ -54,6 +55,7 @@ public class UsersControllerTests
             var ok = Assert.IsType<OkObjectResult>(result.Result);
             var user = Assert.IsType<User>(ok.Value);
             Assert.Equal("a@example.com", user.Id);
+            Assert.Contains(Role.Reader, user.Roles);
         }
     }
 
