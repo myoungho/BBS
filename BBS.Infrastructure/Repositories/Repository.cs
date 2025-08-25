@@ -30,7 +30,7 @@ public class Repository<T> : IRepository<T> where T : class
 
     public virtual async Task<T?> GetByIdAsync(int id)
     {
-        return await _dbSet.FindAsync(id).AsTask();
+        return await _dbSet.FindAsync(id);
     }
 
     public virtual async Task<T> AddAsync(T entity)
