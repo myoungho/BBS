@@ -14,3 +14,10 @@ Simple bulletin board REST API built with ASP.NET Core and EF Core.
    dotnet build
    dotnet run --project BBS.Api
    ```
+
+## Docker
+Build and run the API using Docker:
+```bash
+docker build -t bbs-api .
+docker run -p 8080:8080 bbs-api
+```
