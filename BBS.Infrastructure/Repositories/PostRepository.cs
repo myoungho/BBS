@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using BBS.Domain.Entities;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
@@ -6,32 +7,15 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BBS.Infrastructure.Repositories;
 
-public class PostRepository : IPostRepository
+public class PostRepository : Repository<Post>, IPostRepository
 {
-    private readonly BbsContext _context;
+    public PostRepository(BbsContext context) : base(context) { }
 
-    public PostRepository(BbsContext context)
-    {
-        _context = context;
-    }
+    public async Task<List<Post>> GetPostsAsync() => await GetAllAsync();
 
-    public async Task<List<Post>> GetPostsAsync()
-    {
-        return await _context.Posts.Include(p => p.Comments).ToListAsync();
-    }
+    public async Task<Post?> GetPostAsync(int id) => await GetByIdAsync(id);
 
-    public async Task<Post?> GetPostAsync(int id)
-    {
-        return await _context.Posts.Include(p => p.Comments)
-            .FirstOrDefaultAsync(p => p.Id == id);
-    }
-
-    public async Task<Post> AddPostAsync(Post post)
-    {
-        _context.Posts.Add(post);
-        await _context.SaveChangesAsync();
-        return post;
-    }
+    public async Task<Post> AddPostAsync(Post post) => await AddAsync(post);
 
     public async Task<Comment> AddCommentAsync(int postId, Comment comment)
     {
@@ -54,5 +38,16 @@ public class PostRepository : IPostRepository
             throw new InvalidOperationException("Post not found");
         }
         return await _context.Comments.Where(c => c.PostId == postId).ToListAsync();
+    }
+
+    public override async Task<List<Post>> GetAllAsync()
+    {
+        return await _context.Posts.Include(p => p.Comments).ToListAsync();
+    }
+
+    public override async Task<Post?> GetByIdAsync(int id)
+    {
+        return await _context.Posts.Include(p => p.Comments)
+            .FirstOrDefaultAsync(p => p.Id == id);
     }
 }
