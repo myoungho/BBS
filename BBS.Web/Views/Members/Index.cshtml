@@ -1,4 +1,5 @@
 @model IEnumerable<BBS.Domain.Entities.User>
+@using System.Linq
 @{
     ViewData["Title"] = "Members";
 }
@@ -18,7 +19,7 @@
         <tr>
             <td>@user.LoginId</td>
             <td>@user.Nickname</td>
-            <td>@string.Join(", ", user.Roles)</td>
+            <td>@string.Join(", ", user.UserRoles.Select(ur => ur.Role.Name))</td>
             <td>
                 <a class="btn btn-sm btn-secondary" asp-action="Details" asp-route-id="@user.LoginId">Details</a>
                 @if (Context.Session.GetString("token") != null)

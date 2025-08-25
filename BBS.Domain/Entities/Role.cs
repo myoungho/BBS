@@ -3,19 +3,13 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BBS.Domain.Entities;
 
-public class User
+public class Role
 {
     [Key]
     public int Id { get; set; }
 
     [Required]
-    public string LoginId { get; set; } = default!; // Email as login ID
-
-    [Required]
-    public string Nickname { get; set; } = default!;
-
-    [Required]
-    public string PasswordHash { get; set; } = default!;
+    public string Name { get; set; } = default!;
 
     public List<UserRole> UserRoles { get; set; } = new();
 }

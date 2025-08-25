@@ -1,7 +1,8 @@
+using System.Collections.Generic;
+using System.Linq;
 using BBS.Api.Controllers;
 using BBS.Application.Services;
 using BBS.Domain.Entities;
-using BBS.Domain.Enums;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using BBS.Infrastructure.Repositories;
@@ -19,8 +20,9 @@ public class UsersControllerTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
         var context = new BbsContext(options);
-        IRepository<User> repository = new Repository<User>(context);
-        IUserService service = new UserService(repository);
+        IRepository<User> userRepository = new Repository<User>(context);
+        IRepository<Role> roleRepository = new Repository<Role>(context);
+        IUserService service = new UserService(userRepository, roleRepository);
         var controller = new UsersController(service);
         return (context, controller);
     }
@@ -48,14 +50,20 @@ public class UsersControllerTests
         var (context, controller) = CreateController();
         using (context)
         {
-            context.Users.Add(new User { LoginId = "a@example.com", Nickname = "a", PasswordHash = "p" });
+            context.Users.Add(new User
+            {
+                LoginId = "a@example.com",
+                Nickname = "a",
+                PasswordHash = "p",
+                UserRoles = new List<UserRole> { new UserRole { Role = new Role { Name = "Reader" } } }
+            });
             await context.SaveChangesAsync();
 
             var result = await controller.GetUser("a@example.com");
             var ok = Assert.IsType<OkObjectResult>(result.Result);
             var user = Assert.IsType<User>(ok.Value);
             Assert.Equal("a@example.com", user.LoginId);
-            Assert.Contains(Role.Reader, user.Roles);
+            Assert.Contains("Reader", user.UserRoles.Select(ur => ur.Role.Name));
         }
     }
 

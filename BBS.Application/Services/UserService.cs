@@ -4,51 +4,65 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using BBS.Domain.Entities;
-using BBS.Domain.Enums;
 using BBS.Domain.Repositories;
 
 namespace BBS.Application.Services;
 
 public class UserService : IUserService
 {
-    private readonly IRepository<User> _repository;
+    private readonly IRepository<User> _userRepository;
+    private readonly IRepository<Role> _roleRepository;
 
-    public UserService(IRepository<User> repository)
+    public UserService(IRepository<User> userRepository, IRepository<Role> roleRepository)
     {
-        _repository = repository;
+        _userRepository = userRepository;
+        _roleRepository = roleRepository;
     }
 
-    public async Task<bool> RegisterAsync(string loginId, string password, string nickname, IEnumerable<Role>? roles = null)
+    public async Task<bool> RegisterAsync(string loginId, string password, string nickname, IEnumerable<string>? roles = null)
     {
-        if ((await _repository.GetAllAsync()).Any(u => u.LoginId == loginId)) return false;
-        if ((await _repository.GetAllAsync()).Any(u => u.Nickname == nickname)) return false;
+        if ((await _userRepository.GetAllAsync()).Any(u => u.LoginId == loginId)) return false;
+        if ((await _userRepository.GetAllAsync()).Any(u => u.Nickname == nickname)) return false;
 
         var user = new User
         {
             LoginId = loginId,
             Nickname = nickname,
-            PasswordHash = Hash(password),
-            Roles = roles?.ToList() ?? new List<Role> { Role.Reader }
+            PasswordHash = Hash(password)
         };
-        await _repository.AddAsync(user);
+
+        var roleNames = roles?.ToList() ?? new List<string> { "Reader" };
+        var existingRoles = await _roleRepository.GetAllAsync();
+        foreach (var roleName in roleNames)
+        {
+            var role = existingRoles.FirstOrDefault(r => r.Name == roleName);
+            if (role == null)
+            {
+                role = await _roleRepository.AddAsync(new Role { Name = roleName });
+                existingRoles.Add(role);
+            }
+            user.UserRoles.Add(new UserRole { Role = role });
+        }
+
+        await _userRepository.AddAsync(user);
         return true;
     }
 
     public async Task<User?> AuthenticateAsync(string loginId, string password)
     {
-        var user = (await _repository.GetAllAsync()).FirstOrDefault(u => u.LoginId == loginId);
+        var user = (await _userRepository.GetAllAsync()).FirstOrDefault(u => u.LoginId == loginId);
         if (user == null) return null;
         return user.PasswordHash == Hash(password) ? user : null;
     }
 
     public async Task<List<User>> GetUsersAsync()
     {
-        return await _repository.GetAllAsync();
+        return await _userRepository.GetAllAsync();
     }
 
     public async Task<User?> GetUserAsync(string loginId)
     {
-        return (await _repository.GetAllAsync()).FirstOrDefault(u => u.LoginId == loginId);
+        return (await _userRepository.GetAllAsync()).FirstOrDefault(u => u.LoginId == loginId);
     }
 
     public async Task DeleteUserAsync(string loginId)
@@ -56,7 +70,7 @@ public class UserService : IUserService
         var user = await GetUserAsync(loginId);
         if (user != null)
         {
-            await _repository.DeleteAsync(user.Id);
+            await _userRepository.DeleteAsync(user.Id);
         }
     }
 
