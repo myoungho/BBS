@@ -1,10 +1,31 @@
-@model IEnumerable<BBS.Domain.Entities.Post>
+@model IEnumerable<Post>
+@{
+    ViewData["Title"] = "Posts";
+    var user = Context.Session.GetString("user");
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h1>Posts</h1>
+    @if (user != null)
+    {
+        <a class="btn btn-primary" href="/Posts/Create">New Post</a>
+    }
+</div>
 
 @foreach (var post in Model)
 {
-    <article>
-        <h2>@post.Title</h2>
-        <p>@post.Content</p>
-        <p>@post.Comments.Count comment(s)</p>
-    </article>
+    <div class="card mb-3">
+        <div class="card-body">
+            <h5 class="card-title">@post.Title</h5>
+            <p class="card-text">@post.Content</p>
+            <a class="btn btn-sm btn-secondary" href="/Posts/Details/@post.Id">View</a>
+            @if (user == post.AuthorId)
+            {
+                <a class="btn btn-sm btn-warning" href="/Posts/Edit/@post.Id">Edit</a>
+                <form method="post" asp-action="Delete" asp-route-id="@post.Id" class="d-inline">
+                    <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                </form>
+            }
+        </div>
+    </div>
 }

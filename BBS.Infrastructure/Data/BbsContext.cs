@@ -15,6 +15,10 @@ public class BbsContext : DbContext
     {
         base.OnModelCreating(modelBuilder);
         modelBuilder.Entity<User>().HasKey(u => u.Id);
+        modelBuilder.Entity<Post>()
+            .HasOne<User>()
+            .WithMany()
+            .HasForeignKey(p => p.AuthorId);
     }
 }
 

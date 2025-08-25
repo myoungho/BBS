@@ -4,8 +4,10 @@ using BBS.Domain.Entities;
 using BBS.Domain.Repositories;
 using BBS.Infrastructure.Data;
 using BBS.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 using Xunit;
 
 namespace BBS.Api.Tests;
@@ -20,7 +22,19 @@ public class PostsControllerTests
         var context = new BbsContext(options);
         IPostRepository repository = new PostRepository(context);
         IPostService service = new PostService(repository);
-        var controller = new PostsController(service);
+        var controller = new PostsController(service)
+        {
+            ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext
+                {
+                    User = new ClaimsPrincipal(new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.Name, "user@example.com")
+                    }))
+                }
+            }
+        };
         return (context, controller);
     }
 
@@ -49,6 +63,7 @@ public class PostsControllerTests
             var createdPost = Assert.IsType<Post>(created.Value);
 
             Assert.Equal("Hello", createdPost.Title);
+            Assert.Equal("user@example.com", createdPost.AuthorId);
             Assert.Single(context.Posts);
         }
     }

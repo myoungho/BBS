@@ -1,0 +1,20 @@
+@model RegisterDto
+@{
+    ViewData["Title"] = "Register";
+}
+
+<form asp-action="Register" method="post" class="mt-3">
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Nickname" class="form-label"></label>
+        <input asp-for="Nickname" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label"></label>
+        <input asp-for="Password" type="password" class="form-control" />
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
