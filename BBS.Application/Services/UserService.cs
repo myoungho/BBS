@@ -10,9 +10,9 @@ namespace BBS.Application.Services;
 
 public class UserService : IUserService
 {
-    private readonly IRepository<User, string> _repository;
+    private readonly IRepository<User> _repository;
 
-    public UserService(IRepository<User, string> repository)
+    public UserService(IRepository<User> repository)
     {
         _repository = repository;
     }

@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace BBS.Infrastructure.Repositories;
 
-public class Repository<T, TKey> : IRepository<T, TKey> where T : class
+public class Repository<T> : IRepository<T> where T : class
 {
     protected readonly BbsContext _context;
     protected readonly DbSet<T> _dbSet;
@@ -21,7 +21,7 @@ public class Repository<T, TKey> : IRepository<T, TKey> where T : class
         return await _dbSet.ToListAsync();
     }
 
-    public virtual async Task<T?> GetByIdAsync(TKey id)
+    public virtual async Task<T?> GetByIdAsync(object id)
     {
         return await _dbSet.FindAsync(id).AsTask();
     }
@@ -39,7 +39,7 @@ public class Repository<T, TKey> : IRepository<T, TKey> where T : class
         await _context.SaveChangesAsync();
     }
 
-    public virtual async Task DeleteAsync(TKey id)
+    public virtual async Task DeleteAsync(object id)
     {
         var entity = await GetByIdAsync(id);
         if (entity != null)

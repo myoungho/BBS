@@ -22,7 +22,7 @@ public static class DependencyInjection
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
         }
 
-        services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
         return services;
     }
 }

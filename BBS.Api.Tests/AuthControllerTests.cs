@@ -19,7 +19,7 @@ public class AuthControllerTests
             .UseInMemoryDatabase(Guid.NewGuid().ToString())
             .Options;
         var context = new BbsContext(options);
-        IRepository<User, string> repository = new Repository<User, string>(context);
+        IRepository<User> repository = new Repository<User>(context);
         IUserService service = new UserService(repository);
         var settings = new Dictionary<string, string>
         {

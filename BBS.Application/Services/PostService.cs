@@ -8,10 +8,10 @@ namespace BBS.Application.Services;
 
 public class PostService : IPostService
 {
-    private readonly IRepository<Post, int> _posts;
-    private readonly IRepository<Comment, int> _comments;
+    private readonly IRepository<Post> _posts;
+    private readonly IRepository<Comment> _comments;
 
-    public PostService(IRepository<Post, int> posts, IRepository<Comment, int> comments)
+    public PostService(IRepository<Post> posts, IRepository<Comment> comments)
     {
         _posts = posts;
         _comments = comments;
